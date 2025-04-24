@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   supabase_flutter: ^2.8.4
   flutter_dotenv: ^5.0.2  # Add this line for dotenv support
+  flutter_animate: ^4.5.2
 
 dev_dependencies:
   flutter_test:
