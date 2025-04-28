@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:auth_app/auth/auth_service.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -11,174 +12,201 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final authService = AuthService();
 
-  final _currentPassword = TextEditingController();
-  final _newPassword = TextEditingController();
-  final _confirmPassword = TextEditingController();
-
   void logout() async {
     await authService.signOut();
   }
 
+  final githubUrl = "https://github.com/Roger0222";
+
   @override
   Widget build(BuildContext context) {
     final currentEmail = authService.getCurrentUserEmail() ?? "user@email.com";
-    final isWide = MediaQuery.of(context).size.width > 600;
+    final isWide = MediaQuery.of(context).size.width > 800;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFFFDE68A), Color(0xFFFCA5A5)],
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                ),
-              ),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.deepPurple.shade100,
-                    backgroundImage: null, // You can use NetworkImage() here
-                    child: const Icon(
-                      Icons.person,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    "Roger",
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(currentEmail),
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade100,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Text(
-                          "Enterprise",
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 32,
-                ),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: isWide ? 600 : double.infinity,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Password",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      const Text(
-                        "Here you can change the password to your account.",
-                        style: TextStyle(color: Colors.black54),
-                      ),
-                      const SizedBox(height: 24),
-                      _buildPasswordField("Current Password", _currentPassword),
-                      const SizedBox(height: 16),
-                      _buildPasswordField(
-                        "New Password",
-                        _newPassword,
-                        helper: "Password must be more than 10 chars long.",
-                      ),
-                      const SizedBox(height: 16),
-                      _buildPasswordField(
-                        "Confirm New Password",
-                        _confirmPassword,
-                      ),
-                      const SizedBox(height: 32),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {}, // Cancel logic
-                            child: const Text("Cancel"),
-                          ),
-                          const SizedBox(width: 12),
-                          ElevatedButton(
-                            onPressed: () {}, // Update logic
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple,
-                              foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24,
-                                vertical: 14,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                            child: const Text("Update Password"),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
+      backgroundColor: const Color(0xFFF5F7FA),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.deepPurple,
+            child: const Icon(Icons.person, color: Colors.white),
+          ),
         ),
+        actions: [
+          IconButton(
+            onPressed: logout,
+            icon: const Icon(Icons.logout, color: Colors.deepPurple),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.deepPurple,
-        onPressed: logout,
-        child: const Icon(Icons.logout),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: isWide ? 1000 : double.infinity),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildProfileHeader(currentEmail),
+                const SizedBox(height: 24),
+                _buildStatsSection(),
+                const SizedBox(height: 24),
+                _buildEducationSection(),
+                const SizedBox(height: 24),
+                _buildSkillsSection(),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildPasswordField(
-    String label,
-    TextEditingController controller, {
-    String? helper,
-  }) {
-    return TextField(
-      controller: controller,
-      obscureText: true,
-      decoration: InputDecoration(
-        labelText: label,
-        helperText: helper,
-        prefixIcon: const Icon(Icons.lock_outline),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+  Widget _buildProfileHeader(String currentEmail) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 12, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Column(
+        children: [
+          const CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage(
+              'https://avatars.githubusercontent.com/u/150405705?s=400&u=8268ff7a3b7be7795273c5dc882a813a52b4f154&v=4',
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            "Roger",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            currentEmail,
+            style: const TextStyle(color: Colors.black54),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.linked_camera),
+                onPressed: () {}, // You can link to your LinkedIn here
+              ),
+              IconButton(
+                icon: const Icon(Icons.code),
+                onPressed: () async {
+                  if (await canLaunchUrl(Uri.parse(githubUrl))) {
+                    await launchUrl(Uri.parse(githubUrl));
+                  }
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepPurple,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            ),
+            child: const Text('Connect'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatsSection() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildStatCard("Projects", "28"),
+        _buildStatCard("Connects", "643"),
+        _buildStatCard("Following", "76"),
+      ],
+    );
+  }
+
+  Widget _buildStatCard(String label, String count) {
+    return Container(
+      width: 100,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Column(
+        children: [
+          Text(
+            count,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(color: Colors.black54)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEducationSection() {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 12, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            "Education",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 12),
+          Text("NORTHERN BUKIDNON STATE COLLEGE"),
+          Text("Bachelor OF Science in Information Technology"),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSkillsSection() {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 12, offset: Offset(0, 4)),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            "Skills & Endorsements",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 12),
+          Text("- Ruby on Rails"),
+          Text("- iOS Development"),
+          Text("- Software Development"),
+        ],
       ),
     );
   }
