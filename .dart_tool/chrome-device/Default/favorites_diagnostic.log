@@ -1,0 +1,69 @@
+2025-04-23 04:52:26.839: [INFO] VisibilityChanged: 0
+2025-04-23 04:52:26.886: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.886: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.887: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.887: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.887: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.887: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.888: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.888: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.889: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.889: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.889: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:26.903: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-23 04:52:26.903: [INFO] OnDoneLoading sync enabled: 0
+2025-04-23 04:52:26.956: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2025-04-23 04:52:27.142: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2025-04-23 04:52:27.148: [INFO] Primary account changed.
+2025-04-23 04:52:27.148: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2025-04-23 04:52:27.161: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2025-04-23 04:52:27.822: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2025-04-23 04:52:33.029: [INFO] Sync initialization duration: 4655ms
+2025-04-23 11:02:07.675: [INFO] VisibilityChanged: 0
+2025-04-23 11:02:07.738: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-23 11:02:07.738: [INFO] OnDoneLoading sync enabled: 1
+2025-04-23 11:02:11.092: [INFO] Sync initialization duration: 3091ms
+2025-04-24 01:52:07.398: [INFO] VisibilityChanged: 0
+2025-04-24 01:52:07.445: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 01:52:07.445: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 01:52:10.210: [INFO] Sync initialization duration: 2528ms
+2025-04-24 02:00:33.094: [INFO] VisibilityChanged: 0
+2025-04-24 02:00:33.132: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 02:00:33.132: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 02:00:36.123: [INFO] Sync initialization duration: 2749ms
+2025-04-24 07:08:13.235: [INFO] VisibilityChanged: 0
+2025-04-24 07:08:13.274: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 07:08:13.274: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 07:08:16.044: [INFO] Sync initialization duration: 2560ms
+2025-04-24 07:13:07.889: [INFO] VisibilityChanged: 0
+2025-04-24 07:13:07.925: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 07:13:07.925: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 07:13:10.546: [INFO] Sync initialization duration: 2395ms
+2025-04-24 07:25:44.094: [INFO] VisibilityChanged: 0
+2025-04-24 07:25:44.134: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 07:25:44.134: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 07:25:48.028: [INFO] Sync initialization duration: 3679ms
+2025-04-24 07:43:22.366: [INFO] VisibilityChanged: 0
+2025-04-24 07:43:22.403: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 07:43:22.403: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 07:43:25.439: [INFO] Sync initialization duration: 2816ms
+2025-04-24 07:51:28.788: [INFO] VisibilityChanged: 0
+2025-04-24 07:51:28.825: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 07:51:28.825: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 07:51:31.906: [INFO] Sync initialization duration: 2823ms
+2025-04-24 08:19:53.643: [INFO] VisibilityChanged: 0
+2025-04-24 08:19:53.718: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-24 08:19:53.718: [INFO] OnDoneLoading sync enabled: 1
+2025-04-24 08:20:03.762: [INFO] Sync initialization duration: 7918ms
+2025-04-28 02:14:00.042: [INFO] VisibilityChanged: 0
+2025-04-28 02:14:00.085: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-28 02:14:00.086: [INFO] OnDoneLoading sync enabled: 1
+2025-04-28 02:14:03.381: [INFO] Sync initialization duration: 1944ms
+2025-04-28 02:53:41.711: [INFO] VisibilityChanged: 0
+2025-04-28 02:53:41.754: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-28 02:53:41.754: [INFO] OnDoneLoading sync enabled: 1
+2025-04-28 02:53:44.676: [INFO] Sync initialization duration: 2701ms
+2025-04-28 03:23:58.089: [INFO] VisibilityChanged: 0
+2025-04-28 03:23:58.133: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2025-04-28 03:23:58.133: [INFO] OnDoneLoading sync enabled: 1
+2025-04-28 03:24:01.256: [INFO] Sync initialization duration: 2914ms
